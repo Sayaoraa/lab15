@@ -1,0 +1,52 @@
+#include <stdio.h>
+#define N 5  //Задаём размер матрице
+
+void rotateMatrix(int mat[N][N]) {
+    // Создаем временную матрицу для хранения повернутой матрицы
+    int temp[N][N];
+
+    // Поворачиваем матрицу на 90 градусов
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            temp[j][N - 1 - i] = mat[i][j];
+        }
+    }
+
+    // Копируем повернутую матрицу в исходную матрицу
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            mat[i][j] = temp[i][j];
+        }
+    }
+}
+
+// Печатаем матрицу
+void showMatrix(int mat[N][N]) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            printf("%d\t", mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int mat[N][N];
+
+    printf("Введите элементы матрицы %dx%d:\n", N, N);
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            scanf("%d", &mat[i][j]);
+        }
+    }
+
+    printf("\nИсходная матрица:\n");
+    showMatrix(mat);
+
+    rotateMatrix(mat);
+
+    printf("\nПовернутая матрица на 90 градусов:\n");
+    showMatrix(mat);
+
+    return 0;
+}
